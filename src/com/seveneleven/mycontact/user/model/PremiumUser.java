@@ -1,0 +1,17 @@
+//author: Developer
+//version : 1.0
+
+package com.seveneleven.mycontact.user.model;
+
+public class PremiumUser extends User {
+
+    public PremiumUser(String email, String password,
+                       String username, int age) {
+        super(email, password, username, age);
+    }
+
+    @Override
+    public String getUserType() {
+        return "PREMIUM";
+    }
+}
