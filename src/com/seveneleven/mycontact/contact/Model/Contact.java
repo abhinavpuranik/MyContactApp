@@ -1,5 +1,5 @@
 //author: Developer
-//version : 3.0
+//version : 6.0
 //abstract Contact model for contacts
 
 package com.seveneleven.mycontact.contact.Model;
@@ -59,6 +59,8 @@ public abstract class Contact {
     public void addEmail(Email email) {
         emails.add(email);
     }
+    
+    //update phone number based on label like home or work
     public void updatePhoneByLabel(String label, String newNumber) {
 
         Optional<PhoneNumber> phoneOptional =
@@ -76,6 +78,7 @@ public abstract class Contact {
     public abstract String getContactType();
     
     @Override
+    //overrided tostring()
     public String toString() {
     	StringBuilder builder = new StringBuilder();
     	builder.append(String.format("ID: %s%n", id));

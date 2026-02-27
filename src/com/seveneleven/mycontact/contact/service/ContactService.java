@@ -1,6 +1,6 @@
 //author : developer
-//version : 4.0
-//created contact service to view a contact
+//version : 6.0
+//created contact service to update a contact
 
 package com.seveneleven.mycontact.contact.service;
 import com.seveneleven.mycontact.contact.Model.Contact;
@@ -11,6 +11,8 @@ import com.seveneleven.mycontact.user.model.User;
 import java.util.Optional;
 import java.util.UUID;
 public class ContactService {
+	
+	//viewing contact details
 	public void viewContactDetails(User user, String contactName) {
 		
 		if(user.getContacts().isEmpty()) {
@@ -36,6 +38,7 @@ public class ContactService {
 	}
 	
 	
+	//allows to add new contact details
 	public void editContactByName(User user, String name, String newName, String newNumber, String label) {
 		Optional<Contact> contactOptional =
 				user.getContacts()

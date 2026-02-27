@@ -151,7 +151,7 @@ public class Main {
 	         );
 	
          
-	         System.out.println("\n===== CONTACTS AFTER EDIT =====");
+	         System.out.println("\n===== CONTACTS AFTER EDIT :  =====");
 	
 	         for (Contact c : sessionUser.getContacts()) {
 	             System.out.println(c);
