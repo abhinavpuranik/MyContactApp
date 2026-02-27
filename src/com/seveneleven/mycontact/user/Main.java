@@ -5,6 +5,7 @@ package com.seveneleven.mycontact.user;
 
 import com.seveneleven.mycontact.user.auth.*;
 import com.seveneleven.mycontact.user.model.User;
+import com.seveneleven.mycontact.contact.Model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -70,8 +71,7 @@ public class Main {
 
             System.out.println("Login Successful!");
 
-        
-
+           
             sessionUser.updateUserName("Abhinav P");
             sessionUser.updateAge(23);
             sessionUser.updatePreference("Dark Mode");
@@ -80,12 +80,60 @@ public class Main {
             System.out.println("Updated Age: " + sessionUser.getAge());
             System.out.println("Preference: " + sessionUser.getPreference());
 
-            // Change Password
             sessionUser.changePassword("Password@123", "NewPass@456");
-
             System.out.println("Password changed successfully!");
+
+        //UC4
+            Contact contact;
+
+            String contactType = "PERSON"; // Can be PERSON or ORGANIZATION
+
+            if (contactType.equalsIgnoreCase("PERSON")) {
+                contact = new Person("John Doe", "1998-05-10");
+            } else {
+                contact = new Organization("OpenAI", "AI Research");
+            }
+
+            // Add phone numbers
+            contact.addPhoneNumber(new PhoneNumber("Mobile", "9876543210"));
+            contact.addPhoneNumber(new PhoneNumber("Work", "9123456780"));
+
+            // Add emails
+            contact.addEmail(new Email("Personal", "john@gmail.com"));
+            contact.addEmail(new Email("Work", "john@company.com"));
+
+            // Add contact to logged-in user
+            sessionUser.addContact(contact);
+
+            System.out.println("\nContact Added Successfully!");
+            System.out.println("Contact ID: " + contact.getId());
+            System.out.println("Created At: " + contact.getCreatedAt());
+
+           
+
+            System.out.println("\n===== USER CONTACTS =====");
+
+            for (Contact c : sessionUser.getContacts()) {
+
+                System.out.println("ID: " + c.getId());
+                System.out.println("Name: " + c.getName());
+                System.out.println("Type: " + c.getContactType());
+                System.out.println("Created At: " + c.getCreatedAt());
+
+                System.out.println("Phone Numbers:");
+                for (PhoneNumber p : c.getPhoneNumbers()) {
+                    System.out.println(" - " + p.getLabel() + ": " + p.getNumber());
+                }
+
+                System.out.println("Emails:");
+                for (Email e : c.getEmails()) {
+                    System.out.println(" - " + e.getLabel() + ": " + e.getAddress());
+                }
+
+                System.out.println("---------------------------");
+            }
         }
-        
-        
     }
 }
+        
+    
