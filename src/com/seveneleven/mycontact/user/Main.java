@@ -1,5 +1,5 @@
 //author: Developer
-//version : 2.0
+//version : 3.0
 
 package com.seveneleven.mycontact.user;
 
@@ -61,5 +61,31 @@ public class Main {
         } else {
             System.out.println("Login Failed!");
         }
+        
+        
+        //UC3
+        if (loggedIn.isPresent()) {
+
+            User sessionUser = loggedIn.get();
+
+            System.out.println("Login Successful!");
+
+        
+
+            sessionUser.updateUserName("Abhinav P");
+            sessionUser.updateAge(23);
+            sessionUser.updatePreference("Dark Mode");
+
+            System.out.println("Updated Username: " + sessionUser.getUserName());
+            System.out.println("Updated Age: " + sessionUser.getAge());
+            System.out.println("Preference: " + sessionUser.getPreference());
+
+            // Change Password
+            sessionUser.changePassword("Password@123", "NewPass@456");
+
+            System.out.println("Password changed successfully!");
+        }
+        
+        
     }
 }
