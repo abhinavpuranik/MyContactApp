@@ -1,12 +1,12 @@
 //author: Developer
-//version : 3.0
+//version : 5.0
 
 package com.seveneleven.mycontact.user;
 
 import com.seveneleven.mycontact.user.auth.*;
 import com.seveneleven.mycontact.user.model.User;
 import com.seveneleven.mycontact.contact.Model.*;
-
+import com.seveneleven.mycontact.contact.service.ContactService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -132,6 +132,32 @@ public class Main {
 
                 System.out.println("---------------------------");
             }
+            
+            //UC5 
+            ContactService contactService = new ContactService();
+            String contactName = sessionUser.getContacts().get(0).getName();
+            
+            contactService.viewContactDetails(sessionUser, contactName);
+            
+            ContactService newContactService = new ContactService();
+
+
+	         newContactService.editContactByName(
+	                 sessionUser,
+	                 "John Doe",        // existing name
+	                 "John Updated",    // new name
+	                 "8888888888",      // new phone number
+	                 "Mobile"           // label to update
+	         );
+	
+         
+	         System.out.println("\n===== CONTACTS AFTER EDIT =====");
+	
+	         for (Contact c : sessionUser.getContacts()) {
+	             System.out.println(c);
+	         }
+            
+            
         }
     }
 }

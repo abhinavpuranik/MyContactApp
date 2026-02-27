@@ -16,4 +16,13 @@ public class PhoneNumber {
 
     public String getLabel() { return label; }
     public String getNumber() { return number; }
+    
+    public void setNumber(String newNumber) {
+    	if(newNumber == null || newNumber.isBlank()) {
+    		throw new IllegalArgumentException("Number cannot be empty");
+    	}
+    	this.number = newNumber;
+    }
+    
+  
 }

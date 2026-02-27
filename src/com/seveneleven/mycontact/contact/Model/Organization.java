@@ -2,9 +2,15 @@
 //version : 3.0
 package com.seveneleven.mycontact.contact.Model;
 
+import java.util.Optional;
+
 public class Organization extends Contact {
 
     private String industry; 
+    public Organization(Organization other) {
+        super(other);
+        this.industry = other.industry;
+    }
 
     public Organization(String name, String industry) {
         super(name);
@@ -18,5 +24,12 @@ public class Organization extends Contact {
     @Override
     public String getContactType() {
         return "ORGANIZATION";
+    }
+    
+    @Override
+    public String toString() {
+        return super.toString() +
+                String.format("Industry: %s%n",
+                        Optional.ofNullable(industry).orElse("Not Provided"));
     }
 }
