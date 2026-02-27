@@ -78,4 +78,47 @@ public class ContactService {
 		
 		
 	}
+	
+	public void deleteContactByName(User user, String name, boolean hardDelete, boolean confirm) {
+		if(!confirm) {
+			System.out.println("Deletion cancelled by user.");
+	        return;
+		}
+		
+		Optional<Contact> contactOptional =
+				user.getContacts()
+					.stream()
+					.filter(c -> c.getName().equalsIgnoreCase(name))
+					.findFirst();
+		
+		if(contactOptional.isEmpty()) {
+			System.out.println("Contact not found");
+			return;
+		}
+		
+		Contact contact = contactOptional.get();
+		
+		try {
+
+	        if (hardDelete) {
+
+	            // HARD DELETE → remove from list
+	            user.getContacts().remove(contact);
+
+	            System.out.println("Contact permanently deleted.");
+
+	        } else {
+
+	            // SOFT DELETE → mark as deleted
+	            contact.markDeleted();
+
+	            System.out.println("Contact marked as deleted (soft delete).");
+	        }
+
+	    } catch (Exception e) {
+	        System.out.println("Error deleting contact.");
+	    }
+					
+		
+	}
 }

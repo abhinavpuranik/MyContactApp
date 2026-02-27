@@ -17,7 +17,7 @@ public abstract class Contact {
     private List<PhoneNumber> phoneNumbers;
     private List<Email> emails;
     private LocalDateTime createdAt;
-
+    private boolean deleted = false;
    
     protected Contact(String name) {
         this.id = UUID.randomUUID();
@@ -124,6 +124,14 @@ public abstract class Contact {
     	}
     	phoneNumbers.get(index).setNumber(newNumber);
     	
+    }
+    
+    public boolean isDeleted() {
+    	return deleted;
+    }
+    
+    public void markDeleted() {
+    	this.deleted = true;
     }
     
     

@@ -133,12 +133,13 @@ public class Main {
                 System.out.println("---------------------------");
             }
             
-            //UC5 
+            //UC5
             ContactService contactService = new ContactService();
             String contactName = sessionUser.getContacts().get(0).getName();
             
             contactService.viewContactDetails(sessionUser, contactName);
             
+            //UC6
             ContactService newContactService = new ContactService();
 
 
@@ -156,6 +157,35 @@ public class Main {
 	         for (Contact c : sessionUser.getContacts()) {
 	             System.out.println(c);
 	         }
+	         
+	         //UC7
+	         
+	         
+
+	        
+
+	         // Example: delete contact named "John Updated"
+	         boolean hardDelete = false;   // true = permanent
+	         boolean confirm = true;       // simulate confirmation dialog
+
+	         contactService.deleteContactByName(
+	                 sessionUser,
+	                 "John Updated",
+	                 hardDelete,
+	                 confirm
+	         );
+
+	         // Show remaining contacts
+	         System.out.println("\n===== CONTACTS AFTER DELETE =====");
+
+	         for (Contact c : sessionUser.getContacts()) {
+
+	             if (!c.isDeleted()) {   // skip soft deleted contacts
+	                 System.out.println(c);
+	             }
+	         }
+	         
+	         
             
             
         }
