@@ -1,11 +1,16 @@
 //author: Developer
-//version : 8.0
+//version : 9.0
 
 package com.seveneleven.mycontact.user;
 
 import com.seveneleven.mycontact.user.auth.*;
 import com.seveneleven.mycontact.user.model.User;
 import com.seveneleven.mycontact.contact.Model.*;
+import com.seveneleven.mycontact.contact.search.ContactSearch;
+import com.seveneleven.mycontact.contact.search.EmailSearch;
+import com.seveneleven.mycontact.contact.search.NameSearch;
+import com.seveneleven.mycontact.contact.search.PhoneSearch;
+import com.seveneleven.mycontact.contact.search.TagSearch;
 import com.seveneleven.mycontact.contact.service.ContactService;
 import java.util.ArrayList;
 import java.util.List;
@@ -164,9 +169,9 @@ public class Main {
 
 	        
 
-	         // Example: delete contact named "John Updated"
+	         
 	         boolean hardDelete = false;   // true = permanent
-	         boolean confirm = true;       // simulate confirmation dialog
+	         boolean confirm = true;       
 
 	         contactService.deleteContactByName(
 	                 sessionUser,
@@ -185,6 +190,7 @@ public class Main {
 	             }
 	         }
 	         
+	         //UC8
 	         System.out.println("\n===== UC8: BULK OPERATIONS =====");
 
 	        
@@ -200,6 +206,37 @@ public class Main {
 
 	         
 	         contactService.bulkExport(sessionUser, selectedNames, "contacts_export.txt");
+	         
+	         
+	         //UC9
+	         System.out.println("\n===== UC9: SEARCH CONTACTS =====");
+
+	         ContactSearch searchStrategy;
+
+	         //can search by name/email/phone/tag
+	         String searchType = "NAME";
+	         String keyword = "John Updated";
+
+	         if (searchType.equalsIgnoreCase("NAME")) {
+	             searchStrategy = new NameSearch();
+	         } else if (searchType.equalsIgnoreCase("PHONE")) {
+	             searchStrategy = new PhoneSearch();
+	         } else if (searchType.equalsIgnoreCase("EMAIL")) {
+	             searchStrategy = new EmailSearch();
+	         } else {
+	             searchStrategy = new TagSearch();
+	         }
+
+	         List<Contact> results =
+	                 searchStrategy.search(sessionUser.getContacts(), keyword);
+
+	         if (results.isEmpty()) {
+	             System.out.println("No contacts found.");
+	         } else {
+	             for (Contact c : results) {
+	                 System.out.println(c);
+	             }
+	         }
 	         
 	         
             
