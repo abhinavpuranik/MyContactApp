@@ -26,7 +26,8 @@ public abstract class Contact {
     private boolean deleted = false;
     //added for bulk operations
     private Set<String> tags = new HashSet<>();
-    private int contactCount = 0;
+
+    private int contactCount = 0;     //used for frequency filter
     
    
     protected Contact(String name) {
