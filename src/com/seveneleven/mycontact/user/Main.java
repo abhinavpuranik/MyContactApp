@@ -1,11 +1,15 @@
 //author: Developer
-//version : 9.0
+//version : 10.0
 
 package com.seveneleven.mycontact.user;
 
 import com.seveneleven.mycontact.user.auth.*;
 import com.seveneleven.mycontact.user.model.User;
 import com.seveneleven.mycontact.contact.Model.*;
+import com.seveneleven.mycontact.contact.filter.ContactFilter;
+import com.seveneleven.mycontact.contact.filter.DateAddedFilter;
+import com.seveneleven.mycontact.contact.filter.FrequentContactFilter;
+import com.seveneleven.mycontact.contact.filter.TagFilter;
 import com.seveneleven.mycontact.contact.search.ContactSearch;
 import com.seveneleven.mycontact.contact.search.EmailSearch;
 import com.seveneleven.mycontact.contact.search.NameSearch;
@@ -236,6 +240,28 @@ public class Main {
 	             for (Contact c : results) {
 	                 System.out.println(c);
 	             }
+	         }
+	         
+	         System.out.println("\n===== UC10: BASIC FILTERING =====");
+
+	         ContactFilter filter;
+
+	         //Can filter based on tag/date/frequent
+	         String filterType = "TAG";
+
+	         if (filterType.equalsIgnoreCase("TAG")) {
+	             filter = new TagFilter("Friends");
+	         } else if (filterType.equalsIgnoreCase("DATE")) {
+	             filter = new DateAddedFilter();
+	         } else {
+	             filter = new FrequentContactFilter();
+	         }
+
+	         List<Contact> filtered =
+	                 filter.apply(sessionUser.getContacts());
+
+	         for (Contact c : filtered) {
+	             System.out.println(c);
 	         }
 	         
 	         

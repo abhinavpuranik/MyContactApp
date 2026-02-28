@@ -26,6 +26,7 @@ public abstract class Contact {
     private boolean deleted = false;
     //added for bulk operations
     private Set<String> tags = new HashSet<>();
+    private int contactCount = 0;
     
    
     protected Contact(String name) {
@@ -149,6 +150,14 @@ public abstract class Contact {
     
     public Set<String> getTags() {
     	return new HashSet<>(tags);
+    }
+    
+    public void incrementContactCount() {
+    	contactCount++;
+    }
+    
+    public int getContactCount() {
+    	return contactCount;
     }
     
     
