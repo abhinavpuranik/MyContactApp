@@ -7,9 +7,13 @@ import com.seveneleven.mycontact.contact.Model.Contact;
 import com.seveneleven.mycontact.contact.Model.Organization;
 import com.seveneleven.mycontact.contact.Model.Person;
 import com.seveneleven.mycontact.user.model.User;
+//import com.sun.tools.javac.util.List;
 
 import java.util.Optional;
 import java.util.UUID;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
 public class ContactService {
 	
 	//viewing contact details
@@ -120,5 +124,58 @@ public class ContactService {
 	    }
 					
 		
+	}
+	//bulk functions for deleting tagging and exporting
+	public void bulkDelete(User user, List<String> names) {
+		for(String name : names) {
+			
+			Optional<Contact> contactOptional = 
+					user.getContacts()
+					.stream()
+					.filter(c -> c.getName().equalsIgnoreCase(name))
+					.findFirst();
+		
+			contactOptional.ifPresent(c -> {
+				c.markDeleted();
+				System.out.println("Deleted " + c.getName());
+			});
+					
+					
+		}
+		
+		
+	}
+	
+	
+public void  bulkTag(User user, List<String> names, String tag) {
+    	
+    	for(Contact contact : user.getContacts()) {
+    		
+    		if(names.contains(contact.getName())) {
+    			System.out.println("Tagged " + contact.getName() + " with " + tag);
+    		}
+    	}
+    	
+    }
+    
+    public void bulkExport(User user,
+            List<String> names,
+            String fileName) {
+
+			try (FileWriter writer = new FileWriter(fileName)) {
+			
+			for (Contact contact : user.getContacts()) {
+			
+			 if (names.contains(contact.getName()) && !contact.isDeleted()) {
+			     writer.write(contact.toString());
+			     writer.write("\n");
+	}
+	}
+			
+			System.out.println("Contacts exported successfully.");
+			
+			} catch (IOException e) {
+			System.out.println("Error exporting contacts.");
+}
 	}
 }

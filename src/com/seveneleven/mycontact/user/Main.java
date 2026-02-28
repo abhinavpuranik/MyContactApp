@@ -1,5 +1,5 @@
 //author: Developer
-//version : 5.0
+//version : 8.0
 
 package com.seveneleven.mycontact.user;
 
@@ -184,6 +184,22 @@ public class Main {
 	                 System.out.println(c);
 	             }
 	         }
+	         
+	         System.out.println("\n===== UC8: BULK OPERATIONS =====");
+
+	        
+	         List<String> selectedNames = new ArrayList<>();
+	         selectedNames.add("John Updated");
+	         selectedNames.add("Alice");
+
+	         
+	         contactService.bulkTag(sessionUser, selectedNames, "Friends");
+
+	        
+	         contactService.bulkDelete(sessionUser, selectedNames);
+
+	         
+	         contactService.bulkExport(sessionUser, selectedNames, "contacts_export.txt");
 	         
 	         
             

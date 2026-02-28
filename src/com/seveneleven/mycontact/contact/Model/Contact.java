@@ -1,14 +1,20 @@
 //author: Developer
-//version : 6.0
+//version : 8.0
 //abstract Contact model for contacts
 
 package com.seveneleven.mycontact.contact.Model;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 import java.util.UUID;
+import java.io.FileWriter;
+import java.io.IOException;
+
+import com.seveneleven.mycontact.user.model.User;
 
 public abstract class Contact {
 
@@ -18,6 +24,9 @@ public abstract class Contact {
     private List<Email> emails;
     private LocalDateTime createdAt;
     private boolean deleted = false;
+    //added for bulk operations
+    private Set<String> tags = new HashSet<>();
+    
    
     protected Contact(String name) {
         this.id = UUID.randomUUID();
@@ -133,6 +142,16 @@ public abstract class Contact {
     public void markDeleted() {
     	this.deleted = true;
     }
+    
+    public void addTag(String tag) {
+    	tags.add(tag);
+    }
+    
+    public Set<String> getTags() {
+    	return new HashSet<>(tags);
+    }
+    
+    
     
     
     
