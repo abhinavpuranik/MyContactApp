@@ -25,7 +25,7 @@ public abstract class Contact {
     private LocalDateTime createdAt;
     private boolean deleted = false;
     //added for bulk operations
-    private Set<String> tags = new HashSet<>();
+    private Set<Tag> tags = new HashSet<>();
 
     private int contactCount = 0;     //used for frequency filter
     
@@ -145,12 +145,16 @@ public abstract class Contact {
     	this.deleted = true;
     }
     
-    public void addTag(String tag) {
-    	tags.add(tag);
+    public void addTag(Tag tag) {
+        tags.add(tag);
     }
-    
-    public Set<String> getTags() {
-    	return new HashSet<>(tags);
+
+    public void removeTag(Tag tag) {
+        tags.remove(tag);
+    }
+
+    public Set<Tag> getTags() {
+        return new HashSet<>(tags); // defensive copy
     }
     
     public void incrementContactCount() {

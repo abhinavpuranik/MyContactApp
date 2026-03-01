@@ -4,6 +4,7 @@
 package com.seveneleven.mycontact.contact.search;
 
 import com.seveneleven.mycontact.contact.Model.Contact;
+import com.seveneleven.mycontact.contact.Model.Tag;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +18,7 @@ public class TagSearch implements ContactSearch {
 
         for (Contact contact : contacts) {
 
-            if (contact.getTags().contains(keyword)) {
+            if (contact.getTags().contains(new Tag(keyword))) {
                 result.add(contact);
             }
         }

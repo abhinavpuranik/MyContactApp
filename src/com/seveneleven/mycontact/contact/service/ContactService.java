@@ -6,6 +6,7 @@ package com.seveneleven.mycontact.contact.service;
 import com.seveneleven.mycontact.contact.Model.Contact;
 import com.seveneleven.mycontact.contact.Model.Organization;
 import com.seveneleven.mycontact.contact.Model.Person;
+import com.seveneleven.mycontact.contact.Model.Tag;
 import com.seveneleven.mycontact.user.model.User;
 //import com.sun.tools.javac.util.List;
 
@@ -152,8 +153,10 @@ public void  bulkTag(User user, List<String> names, String tag) {
     	for(Contact contact : user.getContacts()) {
     		
     		if(names.contains(contact.getName())) {
+    			contact.addTag(new Tag(tag));
     			System.out.println("Tagged " + contact.getName() + " with " + tag);
     		}
+    		
     	}
     	
     }
@@ -178,4 +181,29 @@ public void  bulkTag(User user, List<String> names, String tag) {
 			System.out.println("Error exporting contacts.");
 }
 	}
+    
+    public void createTagForContact(User user,
+            String contactName,
+            String tagName) {
+
+Optional<Contact> contactOptional =
+user.getContacts()
+.stream()
+.filter(c -> c.getName().equalsIgnoreCase(contactName))
+.findFirst();
+
+if (contactOptional.isEmpty()) {
+System.out.println("Contact not found.");
+return;
+}
+
+Contact contact = contactOptional.get();
+
+Tag tag = new Tag(tagName);
+contact.addTag(tag);
+
+System.out.println("Tag '" + tagName + "' added to " + contactName);
+}
+    
+    
 }

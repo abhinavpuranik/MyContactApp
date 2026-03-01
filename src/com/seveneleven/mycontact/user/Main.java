@@ -241,6 +241,7 @@ public class Main {
 	                 System.out.println(c);
 	             }
 	         }
+	         //uc10
 	         
 	         System.out.println("\n===== UC10: BASIC FILTERING =====");
 
@@ -262,6 +263,21 @@ public class Main {
 
 	         for (Contact c : filtered) {
 	             System.out.println(c);
+	         }
+	         
+	         System.out.println("\n===== UC11: TAG MANAGEMENT =====");
+
+	         
+
+	         // Add tags
+	         contactService.createTagForContact(sessionUser, "John Updated", "Friends");
+	         contactService.createTagForContact(sessionUser, "John Updated", "Work");
+	         contactService.createTagForContact(sessionUser, "John Updated", "Friends"); // duplicate test
+
+	         // Show contact with tags
+	         for (Contact c : sessionUser.getContacts()) {
+	             System.out.println("Contact: " + c.getName());
+	             System.out.println("Tags: " + c.getTags());
 	         }
 	         
 	         
