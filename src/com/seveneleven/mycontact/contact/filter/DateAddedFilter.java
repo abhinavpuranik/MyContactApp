@@ -10,7 +10,7 @@ import com.seveneleven.mycontact.contact.Model.Contact;
 
 
 //author: Developer
-//version : 10.0
+//version : 12.0
 public class DateAddedFilter implements ContactFilter {
 
     @Override

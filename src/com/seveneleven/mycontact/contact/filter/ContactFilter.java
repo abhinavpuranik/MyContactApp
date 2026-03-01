@@ -1,6 +1,6 @@
 
 //author: Developer
-//version : 10.0
+//version : 12.0
 //Contact filter interface
 package com.seveneleven.mycontact.contact.filter;
 

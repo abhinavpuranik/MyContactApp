@@ -1,3 +1,8 @@
+
+//author: Developer
+//version : 12.0
+//Model for Tag creation, ensures uniqueness
+
 package com.seveneleven.mycontact.contact.Model;
 
 import java.util.Objects;

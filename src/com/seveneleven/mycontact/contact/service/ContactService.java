@@ -1,5 +1,5 @@
 //author : developer
-//version : 6.0
+//version : 12.0
 //created contact service to update a contact
 
 package com.seveneleven.mycontact.contact.service;
@@ -186,24 +186,47 @@ public void  bulkTag(User user, List<String> names, String tag) {
             String contactName,
             String tagName) {
 
-Optional<Contact> contactOptional =
-user.getContacts()
-.stream()
-.filter(c -> c.getName().equalsIgnoreCase(contactName))
-.findFirst();
+    		Optional<Contact> contactOptional =
+    				user.getContacts()
+    				.stream()
+    				.filter(c -> c.getName().equalsIgnoreCase(contactName))
+    				.findFirst();
 
-if (contactOptional.isEmpty()) {
-System.out.println("Contact not found.");
-return;
+    		if (contactOptional.isEmpty()) {
+    			System.out.println("Contact not found.");
+    			return;
+    		}
+
+    		Contact contact = contactOptional.get();
+
+    		Tag tag = new Tag(tagName);
+    		contact.addTag(tag);
+
+    		System.out.println("Tag '" + tagName + "' added to " + contactName);
 }
+    
+    //method for removing tags
+    
+    public void removeTagFromContact(User user,
+            String contactName,
+            String tagName) {
 
-Contact contact = contactOptional.get();
+    		for (Contact contact : user.getContacts()) {
 
-Tag tag = new Tag(tagName);
-contact.addTag(tag);
+    			if (contact.getName().equalsIgnoreCase(contactName)) {
 
-System.out.println("Tag '" + tagName + "' added to " + contactName);
-}
+    				contact.removeTag(new Tag(tagName));
+
+    				System.out.println("Tag '" + tagName +
+    						"' removed from " + contactName);
+    				return;
+    			}
+    		}
+
+    			System.out.println("Contact not found.");
+    }
+    
+
     
     
 }

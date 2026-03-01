@@ -1,5 +1,5 @@
 //author: Developer
-//version : 10.0
+//version : 12.0
 
 package com.seveneleven.mycontact.user;
 
@@ -275,6 +275,40 @@ public class Main {
 	         contactService.createTagForContact(sessionUser, "John Updated", "Friends"); // duplicate test
 
 	         // Show contact with tags
+	         for (Contact c : sessionUser.getContacts()) {
+	             System.out.println("Contact: " + c.getName());
+	             System.out.println("Tags: " + c.getTags());
+	         }
+	         
+	         System.out.println("\n===== UC12: APPLY TAGS =====");
+
+	        
+
+	         // Apply single tag
+	         contactService.createTagForContact(
+	                 sessionUser,
+	                 "John Updated",
+	                 "Family"
+	         );
+
+	         // Apply tag to multiple contacts
+	         List<String> selected = new ArrayList<>();
+	         selectedNames.add("John Updated");
+
+	         contactService.bulkTag(
+	                 sessionUser,
+	                 selected,
+	                 "VIP"
+	         );
+
+	         // Remove tag
+	         contactService.removeTagFromContact(
+	                 sessionUser,
+	                 "John Updated",
+	                 "Family"
+	         );
+
+	        
 	         for (Contact c : sessionUser.getContacts()) {
 	             System.out.println("Contact: " + c.getName());
 	             System.out.println("Tags: " + c.getTags());

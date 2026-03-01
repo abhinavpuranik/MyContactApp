@@ -1,5 +1,5 @@
 //author: Developer
-//version : 8.0
+//version : 12.0
 //abstract Contact model for contacts
 
 package com.seveneleven.mycontact.contact.Model;

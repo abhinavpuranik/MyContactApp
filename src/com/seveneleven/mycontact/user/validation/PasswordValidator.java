@@ -1,6 +1,6 @@
 
 //author: Developer
-//version : 1.0
+//version : 12.0
 //Password must have caps, symbols and 8 characters. REGEX validation
 
 package com.seveneleven.mycontact.user.validation;

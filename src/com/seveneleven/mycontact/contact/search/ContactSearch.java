@@ -1,5 +1,5 @@
 //author: Developer
-//version : 9.0
+//version : 12.0
 //Searching interface
 
 package com.seveneleven.mycontact.contact.search;
